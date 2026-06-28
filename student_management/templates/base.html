@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Student Management System ~
+            {% block title %}
+
+            {% endblock title %}
+        </title>
+        <!-- search link -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+        <!-- bootstrap css cdn link -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <!-- fontas -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+            integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- css link -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+        <!-- alertify css -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/default.min.css">
+
+        {% block extra_css %}{% endblock extra_css %}
+    </head>
+
+    <body>
+        <!-- navbar start -->
+
+        <nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top">
+            <div class="container">
+
+                <!-- Logo -->
+                <a class="navbar-brand fw-bold" href="{% url 'dashboard' %}">
+                    🎓 StudentMS
+                </a>
+
+                <!-- Mobile Button -->
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarContent">
+
+                    <!-- Left Menu -->
+                    <ul class="navbar-nav ms-4">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'dashboard' %}">
+                                Dashboard
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'list' %}">
+                                Students
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'course_list' %}">
+                                Courses
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Enrollments
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <!-- Search -->
+                    <form class="d-flex ms-auto me-3">
+
+                        <input class="form-control search-box" type="search" placeholder="Search Student">
+
+                        <button class="btn btn-search ms-2">
+                            Search
+                        </button>
+
+                    </form>
+
+                    <!-- User -->
+                    <div class="dropdown">
+
+                        <a class="btn btn-user dropdown-toggle" data-bs-toggle="dropdown">
+
+                            👤 {{ request.user.username }}
+
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    Profile
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    Settings
+                                </a>
+                            </li>
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item text-danger" href="#">
+                                    Logout
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </nav>
+        <!-- navbar end -->
+
+        {% block content %}
+
+        {% endblock content %}
+
+        <!-- footer start -->
+
+        <footer class="footer mt-auto">
+
+            <div class="container">
+
+                <div class="row gy-4">
+
+                    <!-- Project Info -->
+                    <div class="col-lg-4 col-md-6">
+                        <h5 class="footer-title">
+                            🎓 StudentMS
+                        </h5>
+
+                        <p class="footer-text">
+                            Student Course Management System built with Django &
+                            Bootstrap. Manage students, courses, and enrollments
+                            efficiently from a single dashboard.
+                        </p>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-lg-2 col-md-6">
+                        <h5 class="footer-title">
+                            Quick Links
+                        </h5>
+
+                        <ul class="footer-links">
+
+                            <li>
+                                <a href="{% url 'dashboard' %}">
+                                    Dashboard
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    Students
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    Courses
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    Enrollments
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-title">
+                            Contact
+                        </h5>
+
+                        <p class="footer-text mb-2">
+                            <i class="bi bi-envelope-fill me-2"></i>
+                            admin@studentms.com
+                        </p>
+
+                        <p class="footer-text mb-2">
+                            <i class="bi bi-telephone-fill me-2"></i>
+                            +977 9800000000
+                        </p>
+
+                        <p class="footer-text">
+                            <i class="bi bi-geo-alt-fill me-2"></i>
+                            Kathmandu, Nepal
+                        </p>
+                    </div>
+
+                    <!-- Social -->
+                    <div class="col-lg-3 col-md-6">
+
+                        <h5 class="footer-title">
+                            Follow Us
+                        </h5>
+
+                        <div class="social-links">
+
+                            <a href="#">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="bi bi-github"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="bi bi-twitter-x"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr class="footer-line">
+
+                <div class="text-center">
+
+                    <p class="copyright mb-0">
+                        © 2026 StudentMS. All Rights Reserved.
+                        <br>
+                        Developed with ❤️ using Django & Bootstrap.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </footer>
+        <!-- footer End -->
+
+
+
+        <!-- js cdn link -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+        <!-- JavaScript -->
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+
+        {% if messages %}
+        {% for message in messages %}
+        <script>
+            alertify.set('notifier', 'position', 'top-right');
+            alertify.success("{{ message|escapejs }}");
+        </script>
+        {% endfor %}
+        {% endif %}
+
+        {% block extra_js %}{% endblock extra_js %}
+
+    </body>
+
+</html>

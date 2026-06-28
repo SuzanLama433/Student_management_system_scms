@@ -1,0 +1,17 @@
+.student-img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #e9ecef;
+}
+
+.card {
+  border-radius: 16px;
+}
+
+.table th {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}

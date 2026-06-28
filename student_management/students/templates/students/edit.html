@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Add Student{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/students.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+
+    <div class="container">
+
+        <!-- Heading -->
+        <div class="text-center mb-4">
+
+            <h2 class="fw-bold text-primary">
+                <i class="bi bi-person-plus-fill"></i>
+                Update Student
+            </h2>
+
+            <p class="text-muted">
+                Fill in the student's information below.
+            </p>
+
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-9">
+
+                <div class="card shadow-lg border-0 student-form-card">
+
+                    <div class="card-header bg-primary text-white py-3">
+
+                        <h4 class="mb-0">
+                            Student Information
+                        </h4>
+
+                    </div>
+
+                    <div class="card-body p-4">
+
+                        <form method="POST" action="{% url 'dataEdit' data.id %}" enctype="multipart/form-data">
+
+                            {% csrf_token %}
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Full Name
+                                    </label>
+
+                                    <input type="text" name="name" value="{{data.name}}" class="form-control"
+                                        placeholder="Enter full name">
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Phone Number
+                                    </label>
+
+                                    <input type="text" name="number" value="{{data.number}}" class="form-control"
+                                        placeholder="98XXXXXXXX">
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Email
+                                    </label>
+
+                                    <input type="email" value="{{data.email}}" name="email" class="form-control"
+                                        placeholder="example@gmail.com">
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Date of Birth :
+                                    </label>
+
+                                    {% if data.dob %}
+                                    {{data.dob}}
+
+                                    {% endif %}
+
+
+                                    <input type="date" name="dob" class="form-control">
+
+                                </div>
+
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Profile Image
+                                    </label> <br>
+
+                                    {% if data.image %}
+                                    <img src="{{data.image.url}}" height="50px" alt="not found image">
+
+                                    {% endif %}
+
+
+                                    <input type="file" name="image" class="form-control">
+
+                                </div>
+
+                                <div class="col-12 mb-4">
+
+                                    <label class="form-label" for="address">
+                                        Address
+                                    </label>
+
+                                    <input type="text" value="{{data.address}}" name="address" id="address"
+                                        class="form-control">
+
+                                </div>
+
+                            </div>
+
+                            <div class="d-flex justify-content-end">
+
+                                <a href="{% url 'list' %}" class="btn btn-outline-secondary me-2">
+
+                                    <i class="bi bi-arrow-left"></i>
+
+                                    Back
+
+                                </a>
+
+                                <button type="submit" class="btn btn-primary px-4">
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                    Update Student
+
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

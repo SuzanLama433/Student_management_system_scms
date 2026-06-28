@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Add Course{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/courses.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+
+    <div class="container">
+
+        <!-- Heading -->
+        <div class="text-center mb-4">
+
+            <h2 class="fw-bold text-success">
+                <i class="bi bi-book-fill"></i>
+                Course update
+            </h2>
+
+            <p class="text-muted">
+                Fill in the course information below.
+            </p>
+
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-9">
+
+                <div class="card shadow-lg border-0 course-form-card">
+
+                    <div class="card-header bg-success text-white py-3">
+
+                        <h4 class="mb-0">
+                            Course Information
+                        </h4>
+
+                    </div>
+
+                    <div class="card-body p-4">
+
+                        <form method="POST" action="{% url 'course_update' data.id %}">
+
+                            {% csrf_token %}
+
+                            <div class="row">
+
+                                <!-- Course Name -->
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Course Name
+                                    </label>
+
+                                    <input type="text" value="{{data.course_name}}" name="course_name"
+                                        class="form-control" placeholder="Python with Django">
+
+                                </div>
+
+                                <!-- Duration -->
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Duration
+                                    </label>
+
+                                    <input type="text" value="{{data.duration}}" name="duration" class="form-control"
+                                        placeholder="3 Months">
+
+                                </div>
+
+                                <!-- Fee -->
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Course Fee (Rs.)
+                                    </label>
+
+                                    <input type="number" value="{{data.fee}}" name="fee" class="form-control"
+                                        placeholder="15000">
+
+                                </div>
+
+                                <!-- Description -->
+                                <div class="col-12 mb-4">
+
+                                    <label class="form-label">
+                                        Description
+                                    </label>
+
+                                    <textarea name="description" rows="5" class="form-control"
+                                        placeholder="Write course description...">{{data.description}}</textarea>
+
+                                </div>
+
+                            </div>
+
+                            <div class="d-flex justify-content-end">
+
+                                <a href="{% url 'course_list' %}" class="btn btn-outline-secondary me-2">
+
+                                    <i class="bi bi-arrow-left"></i>
+
+                                    Back
+
+                                </a>
+
+                                <button type="submit" class="btn btn-success px-4">
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                    Save Course
+
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
