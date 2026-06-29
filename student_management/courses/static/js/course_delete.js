@@ -5,32 +5,33 @@ document.addEventListener("DOMContentLoaded", function () {
     deleteModal.addEventListener("show.bs.modal", function (event) {
       const button = event.relatedTarget;
       const name = button.getAttribute("data-name");
-      const id = button.getAttribute("data-id");
+      const url = button.getAttribute("data-url");
+      const courseName = document.getElementById("courseName");
+      const deleteBtn = document.getElementById("deleteBtn");
 
-      document.getElementById("studentName").textContent = name;
-      document.getElementById("deleteBtn").href =
-        "/courses/deleteData/" + id + "/";
+      if (courseName) {
+        courseName.textContent = name;
+      }
+      if (deleteBtn && url) {
+        deleteBtn.href = url;
+      }
     });
   }
 
-  const permaModal = document.getElementById("permanentDeleteModal");
-  if (permaModal) {
-    permaModal.addEventListener("show.bs.modal", function (event) {
-      const button = event.relatedTarget;
-      const name = button.getAttribute("data-name");
-      const id = button.getAttribute("data-id");
+  const permanentAllModal = document.getElementById("permanentDeleteAllModal");
+  if (permanentAllModal) {
+    permanentAllModal.addEventListener("show.bs.modal", function () {
+      const deleteAllName = document.getElementById("deleteAllCourses");
+      const permanentAllDeleteBtn = document.getElementById(
+        "permanentAllDeleteBtn",
+      );
 
-      document.getElementById("deleteName").textContent = name;
-      document.getElementById("permanentDeleteBtn").href =
-        "/students/deletePerma/" + id + "/";
-    });
-  }
-
-  const permaAllModal = document.getElementById("permanentDeleteAllModal");
-  if (permaAllModal) {
-    permaAllModal.addEventListener("show.bs.modal", function () {
-      document.getElementById("permanentAllDeleteBtn").href =
-        "/students/deleteAll/";
+      if (deleteAllName) {
+        deleteAllName.textContent = "all deleted courses";
+      }
+      if (permanentAllDeleteBtn) {
+        permanentAllDeleteBtn.href = "/courses/deleteAll/";
+      }
     });
   }
 });

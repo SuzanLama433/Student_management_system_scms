@@ -37,3 +37,23 @@ def delete_data(request,id):
     data.is_deleted=True
     data.save()
     return redirect('course_list')
+
+def restoreCourse(request):
+    course = Course.objects.filter(is_deleted = True)
+    return render(request, 'restoreCourse.html',{'courses':course})
+
+def restoreItem_courses(request,id):
+    data = Course.objects.get(id = id)
+    data.is_deleted = False
+    data.save()
+    return redirect('restoreCourse')
+
+def delete_permanent(request,id):
+    data = Course.objects.get(id=id)
+    data.delete()
+    return redirect('restoreCourse')
+
+def delete_all(request):
+    data = Course.objects.filter(is_deleted=True)
+    data.delete()
+    return redirect('restoreCourse')

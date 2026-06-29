@@ -51,7 +51,7 @@ def restoreData(request):
     data = Student.objects.filter(is_delete=True)
     return render(request,'students/restoreData.html',{'data':data})
 
-def restoreItem(request,id):
+def restoreItem_student(request,id):
     data = Student.objects.get(id=id)
     data.is_delete = False
     data.save()
@@ -63,7 +63,7 @@ def delete_permanent(request,id):
     return redirect('list')
 
 def delete_all(request):
-    
+
     data = Student.objects.filter(is_delete = True)
     data.delete() #permanent delete
     return redirect('restoreData')

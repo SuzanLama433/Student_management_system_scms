@@ -101,7 +101,7 @@
                                     class="fa-solid fa-pen-to-square"></i> Edit</a>
                             <button type="button" class="btn btn-danger btn-sm delete-btn" data-bs-toggle="modal"
                                 data-bs-target="#deleteModal" data-name="{{ course.course_name }}"
-                                data-id="{{ course.id }}"><i class="fa-solid fa-trash"></i>
+                                data-url="{% url 'course_delete' course.id %}"><i class="fa-solid fa-trash"></i>
                                 Delete</button>
 
                         </td>
@@ -152,7 +152,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Are you sure you want to delete <strong id="studentName"></strong>?
+                Are you sure you want to delete <strong id="courseName"></strong>?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -161,6 +161,7 @@
         </div>
     </div>
 </div>
+<a href="{% url 'restoreCourse' %}" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Recent Delete</a>
 
 <script>
     let table = new DataTable('#myTable');
