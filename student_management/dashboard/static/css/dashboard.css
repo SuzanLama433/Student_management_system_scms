@@ -1,77 +1,180 @@
-/* Welcome Card */
-
-.welcome-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+/* Custom properties for fine-tuning colors */
+:root {
+  --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+  --welcome-bg: #f8fafc;
+  --card-border-radius: 16px;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Statistics Cards */
+body {
+  background-color: #f3f4f6; /* Subtle page background to let white panels pop */
+}
 
+/* Welcome Card */
+.welcome-card {
+  background: var(--welcome-bg);
+  border: 1px solid #e2e8f0;
+  border-radius: var(--card-border-radius);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.text-primary-gradient {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.action-btn {
+  border-radius: 12px;
+  background: var(--primary-gradient);
+  border: none;
+  transition: var(--transition-smooth);
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+}
+
+/* Modern Minimalist Stat Cards */
 .dashboard-card {
-  color: #fff;
-  border-radius: 16px;
-  padding: 25px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-
-  transition: 0.3s;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--card-border-radius);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
 }
 
 .dashboard-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
 }
 
-.dashboard-card h6 {
-  opacity: 0.9;
+/* Stat card specific left accents */
+.card-students {
+  border-left: 5px solid #3b82f6;
+}
+.card-courses {
+  border-left: 5px solid #10b981;
+}
+.card-enrollments {
+  border-left: 5px solid #f59e0b;
 }
 
-.dashboard-card h2 {
-  font-size: 38px;
-  font-weight: bold;
+.tracking-wider {
+  letter-spacing: 0.05em;
 }
 
-.dashboard-icon {
-  font-size: 48px;
-
-  opacity: 0.8;
+/* Icon Shapes */
+.icon-shape {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  font-size: 1.5rem;
 }
 
-/* Quick Action */
+.shape-students {
+  background-color: #eff6ff;
+  color: #3b82f6;
+}
+.shape-courses {
+  background-color: #ecfdf5;
+  color: #10b981;
+}
+.shape-enrollments {
+  background-color: #fffbeb;
+  color: #f59e0b;
+}
 
-.quick-action {
-  text-decoration: none;
+/* Quick Actions Base Panel */
+.custom-panel {
+  border-radius: var(--card-border-radius) !important;
+}
 
-  color: #333;
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  background: var(--primary-gradient);
+  border-radius: 2px;
+}
 
+/* Quick Action Cards */
+.quick-action-card {
   display: block;
+  text-decoration: none;
+  padding: 1.5rem 1rem;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  transition: var(--transition-smooth);
+}
 
-  padding: 20px;
-
+.action-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 12px;
-
-  transition: 0.3s;
+  font-size: 1.25rem;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: var(--transition-smooth);
 }
 
-.quick-action:hover {
-  background: #f8f9fa;
-
-  color: #0d6efd;
+.quick-action-card h6 {
+  transition: var(--transition-smooth);
 }
 
-.quick-action i {
-  font-size: 40px;
-
-  margin-bottom: 10px;
+/* Quick action interactive variant styles */
+.active-blue:hover {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+.active-blue:hover .action-icon-wrapper {
+  background: #3b82f6;
+  color: #ffffff;
 }
 
-.quick-action h6 {
-  margin-top: 10px;
+.active-green:hover {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+.active-green:hover .action-icon-wrapper {
+  background: #10b981;
+  color: #ffffff;
+}
 
-  font-weight: 600;
+.active-indigo:hover {
+  background: #e0e7ff;
+  border-color: #c7d2fe;
+}
+.active-indigo:hover .action-icon-wrapper {
+  background: #4f46e5;
+  color: #ffffff;
+}
+
+.active-amber:hover {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+.active-amber:hover .action-icon-wrapper {
+  background: #f59e0b;
+  color: #ffffff;
+}
+
+.quick-action-card:hover h6 {
+  color: #000000 !important;
 }
