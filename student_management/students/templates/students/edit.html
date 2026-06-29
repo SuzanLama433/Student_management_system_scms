@@ -94,7 +94,8 @@
                                     {% endif %}
 
 
-                                    <input type="date" name="dob" class="form-control">
+                                    <input type="date" value="{{ data.dob|date:'Y-m-d' }}" name="dob"
+                                        class="form-control">
 
                                 </div>
 

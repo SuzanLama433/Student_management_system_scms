@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}New Enrollment{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/enrollment.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+
+    <div class="container">
+
+        <!-- Heading -->
+        <div class="text-center mb-4">
+
+            <h2 class="fw-bold text-info">
+                <i class="bi bi-journal-plus"></i>
+                Assign Course
+            </h2>
+
+            <p class="text-muted">
+                Assign a course to a student.
+            </p>
+
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+                <div class="card shadow-lg border-0 enrollment-card">
+
+                    <div class="card-header bg-info text-white py-3">
+
+                        <h4 class="mb-0">
+                            Enrollment Information
+                        </h4>
+
+                    </div>
+
+                    <div class="card-body p-4">
+
+                        <form method="POST" action="{% url 'enrollment_form' %}">
+
+                            {% csrf_token %}
+
+                            <div class="row">
+
+                                <!-- Student -->
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Student
+                                    </label>
+
+                                    <select class="form-select" name="student">
+
+                                        <option selected disabled>
+                                            Select Student
+                                        </option>
+
+                                        {% for student in students %}
+
+                                        <option value="{{ student.id }}">
+                                            {{ student.name }}
+                                        </option>
+
+                                        {% endfor %}
+
+                                    </select>
+
+                                </div>
+
+                                <!-- Course -->
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Course
+                                    </label>
+
+                                    <select class="form-select" name="course">
+
+                                        <option selected disabled>
+                                            Select Course
+                                        </option>
+
+                                        {% for course in courses %}
+
+                                        <option value="{{ course.id }}">
+                                            {{ course.course_name }}
+                                        </option>
+
+                                        {% endfor %}
+
+                                    </select>
+
+                                </div>
+
+                                <!-- Enrollment Date -->
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Enrollment Date
+                                    </label>
+
+                                    <input type="date" name="enrollment_date" class="form-control">
+
+                                </div>
+
+                                <!-- Status -->
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Status
+                                    </label>
+
+                                    <select class="form-select" name="status">
+
+                                        <option value="Active">
+                                            Active
+                                        </option>
+
+                                        <option value="Completed">
+                                            Completed
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                            <hr>
+
+                            <div class="d-flex justify-content-end">
+
+                                <a href="{% url 'enrollment_list' %}" class="btn btn-outline-secondary me-2">
+
+                                    <i class="bi bi-arrow-left"></i>
+
+                                    Back
+
+                                </a>
+
+                                <button type="submit" class="btn btn-info text-white px-4">
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                    Save Enrollment
+
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

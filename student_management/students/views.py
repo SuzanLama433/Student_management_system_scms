@@ -37,12 +37,10 @@ def edit_data(request,id):
         data.email = request.POST['email']
         data.number= request.POST['number']
         data.address = request.POST['address']
-        dob = request.POST['dob']
+        data.dob = request.POST.get('dob')
         image = request.FILES.get('image')
         if image:
             data.image = image
-        elif dob:
-            data.dob = dob
         data.save()
         return redirect('list')
     return render(request,'students/edit.html',{'data':data})

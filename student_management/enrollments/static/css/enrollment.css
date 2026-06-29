@@ -1,0 +1,106 @@
+.card {
+  border-radius: 16px;
+}
+
+.card-header {
+  border-bottom: 1px solid #eee;
+}
+
+.table thead th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.table tbody tr {
+  transition: 0.3s;
+}
+
+.table tbody tr:hover {
+  background: #f8fcff;
+}
+
+.btn {
+  border-radius: 8px;
+}
+
+.btn-warning {
+  color: #fff;
+}
+
+.badge {
+  font-size: 0.85rem;
+  padding: 8px 14px;
+  border-radius: 20px;
+}
+
+.btn-info {
+  box-shadow: 0 4px 12px rgba(13, 202, 240, 0.3);
+}
+
+.btn-info:hover {
+  transform: translateY(-2px);
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+/* enrollment form */
+.enrollment-card {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.enrollment-card .card-header {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #495057;
+}
+
+.form-control,
+.form-select {
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #ced4da;
+  transition: 0.3s;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #0dcaf0;
+  box-shadow: 0 0 0 0.2rem rgba(13, 202, 240, 0.18);
+}
+
+.btn {
+  border-radius: 10px;
+  padding: 10px 22px;
+  font-weight: 500;
+}
+
+.btn-info {
+  box-shadow: 0 4px 12px rgba(13, 202, 240, 0.25);
+}
+
+.btn-info:hover {
+  transform: translateY(-2px);
+}
+
+.enrollment-card {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

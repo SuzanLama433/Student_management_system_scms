@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('dashboard.urls'),name='homepage'),
     path('students/',include('students.urls'),name='form'),
-    path('courses/',include('courses.urls'),name='courses')
+    path('courses/',include('courses.urls'),name='courses'),
+    path('enrollment/',include('enrollments.urls'),name='enrollment')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
