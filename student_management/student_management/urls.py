@@ -24,5 +24,6 @@ urlpatterns = [
     path('',include('dashboard.urls'),name='homepage'),
     path('students/',include('students.urls'),name='form'),
     path('courses/',include('courses.urls'),name='courses'),
-    path('enrollment/',include('enrollments.urls'),name='enrollment')
+    path('enrollment/',include('enrollments.urls'),name='enrollment'),
+    path('accounts/',include('accounts.urls'),name='accounts')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
