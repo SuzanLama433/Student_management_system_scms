@@ -4,7 +4,24 @@ from django.contrib import messages
 # Create your views here.
 
 def students_list(request):
-    data = Student.objects.filter(is_delete=False)
+    searched = request.GET.get('searched')
+    # method 1
+    
+    # data = Student.objects.filter(is_delete=False)
+    # if searched:
+    #     data = Student.objects.filter(name__contains = searched)
+    # else:
+    #     data = Student.objects.all()
+    # method 2
+    if searched:
+        data = Student.objects.filter(
+            is_delete=False,
+            name__contains=searched
+        )
+    else :
+        data = Student.objects.filter(is_delete = False)
+
+   
     return render(request,'students/student_list.html' ,{'data' : data})
 
 def students_form(request):

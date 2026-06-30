@@ -54,13 +54,13 @@
                     <ul class="navbar-nav ms-4">
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'dashboard' %}">
+                            <a class="nav-link" href="{% url 'dashboard' %}">
                                 Dashboard
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'list' %}">
+                            <a class="nav-link " href="{% url 'list' %}">
                                 Students
                             </a>
                         </li>
@@ -72,7 +72,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'enrollment_list' %}">
+                            <a class="nav-link " href="{% url 'enrollment_list' %}">
                                 Enrollments
                             </a>
                         </li>
@@ -80,11 +80,12 @@
                     </ul>
 
                     <!-- Search -->
-                    <form class="d-flex ms-auto me-3">
+                    <form method="get" action="{% url 'list' %}" class="d-flex ms-auto me-3">
 
-                        <input class="form-control search-box" type="search" placeholder="Search Student">
+                        <input class="form-control search-box" name="searched" type="search"
+                            placeholder="Search Student">
 
-                        <button class="btn btn-search ms-2">
+                        <button type="submit" class="btn btn-search ms-2">
                             Search
                         </button>
 
