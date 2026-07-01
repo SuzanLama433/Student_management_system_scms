@@ -29,7 +29,7 @@ def log_in(request):
             return redirect(next if next else 'dashboard')
         else:
             messages.error(request, "invalid password")
-            return redirect('log_in ')
+            return redirect('log_in')
 
         # Alternative login using email instead of username
         # if request.method == "POST":
@@ -67,7 +67,11 @@ def register(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         cpassword = request.POST.get('cpassword')
-
+        terms = request.POST.get('terms')
+        
+        if not terms:
+            messages.error(request,'You must agree to the Terms of Service and Privacy Policy.')
+            return redirect('log_in')
         # Verify that password and confirm password match
         if password == cpassword:
 
