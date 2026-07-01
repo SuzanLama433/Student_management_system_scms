@@ -66,3 +66,8 @@ A Django-based student and course management system with enrollment, dashboard, 
 
 - Add a `requirements.txt` file with pinned dependencies.
 - Add a `.env` file for secret keys and deployment settings if needed.
+## photos
+![image_alt](https://github.com/SuzanLama433/Student_management_system_scms/blob/5ea76ab7c272dcef11b75e4518d0fc47ec8be28c/p1.png)
+![image_alt](https://github.com/SuzanLama433/Student_management_system_scms/blob/5ea76ab7c272dcef11b75e4518d0fc47ec8be28c/p2.png)
+![image_alt](https://github.com/SuzanLama433/Student_management_system_scms/blob/5ea76ab7c272dcef11b75e4518d0fc47ec8be28c/p3.png)
+![image_alt](https://github.com/SuzanLama433/Student_management_system_scms/blob/5ea76ab7c272dcef11b75e4518d0fc47ec8be28c/p4.png)
