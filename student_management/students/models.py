@@ -1,10 +1,11 @@
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 
 class Student(models.Model):
     name = models.CharField(max_length=50)
-    number = models.CharField(max_length=50)
+    number = PhoneNumberField(region='NP')
     email = models.EmailField(unique=True)
     dob = models.DateField()
     image = models.ImageField(upload_to='studentImage/')
