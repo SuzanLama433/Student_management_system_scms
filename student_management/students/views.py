@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect
 from .models import *
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required(login_url='log_in')
 def students_list(request):
     searched = request.GET.get('searched')
     # method 1
@@ -24,6 +26,7 @@ def students_list(request):
    
     return render(request,'students/student_list.html' ,{'data' : data})
 
+@login_required(login_url='log_in')
 def students_form(request):
     if request.method == 'POST' or request.FILES:
         name = request.POST['name']

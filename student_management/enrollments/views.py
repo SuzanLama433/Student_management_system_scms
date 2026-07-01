@@ -3,13 +3,15 @@ from .models import *
 from students.models import *
 from courses.models import *
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required 
 
 # Create your views here.
-
+@login_required(login_url='log_in')
 def enrollment_list(request):
     enrollments = Enrollment.objects.filter(is_deleted=False)
     return render(request,'enrollment_list.html',{'enrollments':enrollments})
 
+@login_required(login_url='log_in')
 def enrollment_form(request):
     students = Student.objects.all()
     courses = Course.objects.all()

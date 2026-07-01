@@ -6,8 +6,8 @@ from enrollments.models import *
 
 def dashboard(request):
     context = {
-        "total_students": Student.objects.count(),
-        "total_courses": Course.objects.count(),
-        "active_enrollments":Enrollment.objects.count()
+        "total_students": Student.objects.count() if request.user.is_authenticated else 0,
+        "total_courses": Course.objects.count() if request.user.is_authenticated else 0,
+        "active_enrollments":Enrollment.objects.count() if request.user.is_authenticated else 0
     }
     return render(request,'dashboard/dashboard.html',context)

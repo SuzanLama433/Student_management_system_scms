@@ -1,12 +1,15 @@
 from django.shortcuts import render,redirect
 from .models import *
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='log_in')
 def course_list(request):
     data = Course.objects.filter(is_deleted = False)
     return render(request,'courses_list.html',{'courses':data})
 
+@login_required(login_url='log_in')
 def courses_form(request):
     if request.method == "POST":
         course_name= request.POST['course_name']

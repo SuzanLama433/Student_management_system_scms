@@ -102,6 +102,13 @@
 
                         <ul class="dropdown-menu dropdown-menu-end">
 
+                            {% if request.user.is_authenticated %}
+                            <li>
+                                <a class="dropdown-item text-danger" href="{% url 'log_out' %}">
+                                    Logout
+                                </a>
+                            </li>
+                            {% else %}
                             <li>
                                 <a class="dropdown-item" href="{% url 'log_in' %}">
                                     Profile
@@ -113,16 +120,8 @@
                                     Settings
                                 </a>
                             </li>
+                            {% endif %}
 
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item text-danger" href="#">
-                                    Logout
-                                </a>
-                            </li>
 
                         </ul>
 
