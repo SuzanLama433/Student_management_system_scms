@@ -22,7 +22,7 @@ def log_in(request):
         # Authenticate the user using username and password
         checkAuth = authenticate(username=username, password=password)
         if checkAuth is not None:
-            login(request, checkAuth)
+            login(request,checkAuth)
 
             # Redirect to the originally requested page after successful login
             next = request.POST.get('next', '')
