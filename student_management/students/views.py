@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from django.core.mail import send_mail ,EmailMessage 
+from django.template.loader import render_to_string
 # Create your views here.
 
 # Display all active students and search students by name
@@ -39,12 +40,18 @@ def students_form(request):
     # Check if form is submitted
     if request.method == 'POST' or request.FILES:
         # Get form data
-        name = request.POST['name']
-        phone = request.POST['number']
-        email = request.POST['email']
-        dob = request.POST['dob']
+        name = request.POST.get('name')
+        phone = request.POST.get('number')
+        email = request.POST.get('email')
+        dob = request.POST.get('dob')
         image = request.FILES.get('image')
-        address = request.POST['address']
+        address = request.POST.get('address')
+        
+       # Check if the email already exists
+        if Student.objects.filter(email=email).exists():
+            messages.error(request,'A student with this email already exists')
+            return redirect('form')
+
 
         # Create new student record
         Student.objects.create(
@@ -55,6 +62,22 @@ def students_form(request):
             image=image,
             address=address
         )
+        
+        # Email subject.
+        subject = 'Thank you for connecting with us'
+        # Email body message.
+        message = render_to_string('students/email_message.html',{'name':name,'phone':phone,'email':email,'dob':dob,'address':address})
+        # Sender's email address.
+        from_email = 'sujanlama2323@gmail.com'
+        # List of recipient email addresses.
+        recipient_list = [email]
+        # Send the email to the recipient.
+        send_mail(subject=subject,message=message,from_email=from_email,recipient_list=recipient_list,fail_silently=False)
+        
+        # for send mail with file like pdf 
+        # em = EmailMessage(subject=subject,body=message,from_email=from_email,to=recipient_list)
+        # em.attach_file("your file")
+        # em.send(fail_silently=False)
 
         # Show success message
         messages.success(request, f'Hi {name} your form is submited')

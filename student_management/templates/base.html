@@ -273,13 +273,24 @@
 
         {% if messages %}
         {% for message in messages %}
+
         <script>
             alertify.set('notifier', 'position', 'top-right');
-            alertify.success("{{ message|escapejs }}");
+
+            const tag = "{{ message.tags }}";
+
+            if (tag === "success") {
+                alertify.success("{{ message|escapejs }}");
+            } else if (tag === "error") {
+                alertify.error("{{ message|escapejs }}");
+            } else if (tag === "warning") {
+                alertify.warning("{{ message|escapejs }}");
+            } else {
+                alertify.message("{{ message|escapejs }}");
+            }
         </script>
         {% endfor %}
         {% endif %}
-
         {% block extra_js %}{% endblock extra_js %}
 
     </body>

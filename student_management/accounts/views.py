@@ -145,13 +145,25 @@ def log_out(request):
     # Redirect to the dashboard after logout
     return redirect('dashboard')
 
+# Restrict access to authenticated users only.
 @login_required(login_url='log_in')
-#password change
+# Allow the logged-in user to change their password.
 def password_change(request):
-    form = PasswordChangeForm(user = request.user)
+
+    # Display an empty password change form for the current user.
+    form = PasswordChangeForm(user=request.user)
+    # Process the submitted form when the request method is POST.
     if request.method == "POST":
-        form = PasswordChangeForm(user=request.user,data = request.POST)
+
+        # Bind the submitted data to the password change form.
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+
+        # Validate the form and update the password if valid.
         if form.is_valid():
             form.save()
-            return redirect('log_in') 
-    return render(request,'accounts/password_change.html',{'form':form})
+ 
+            # Redirect the user to the login page after changing the password.
+            return redirect('log_in')
+
+    # Render the password change page with the form.
+    return render(request, 'accounts/password_change.html', {'form': form})
