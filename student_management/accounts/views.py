@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 
 # Create your views here.
 
@@ -13,6 +15,7 @@ def log_in(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
+        remember_me = request.POST.get('checkbox')
 
         # Check whether the username exists
         if not User.objects.filter(username=username).exists():
@@ -23,7 +26,11 @@ def log_in(request):
         checkAuth = authenticate(username=username, password=password)
         if checkAuth is not None:
             login(request,checkAuth)
-
+            
+            if remember_me:
+                request.session.set_expiry(36000)
+            else:
+                request.session.set_expiry(0)
             # Redirect to the originally requested page after successful login
             next = request.POST.get('next', '')
             return redirect(next if next else 'dashboard')
@@ -137,3 +144,14 @@ def log_out(request):
 
     # Redirect to the dashboard after logout
     return redirect('dashboard')
+
+@login_required(login_url='log_in')
+#password change
+def password_change(request):
+    form = PasswordChangeForm(user = request.user)
+    if request.method == "POST":
+        form = PasswordChangeForm(user=request.user,data = request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('log_in') 
+    return render(request,'accounts/password_change.html',{'form':form})
