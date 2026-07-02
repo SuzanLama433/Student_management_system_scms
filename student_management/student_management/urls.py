@@ -25,5 +25,6 @@ urlpatterns = [
     path('students/',include('students.urls'),name='form'),
     path('courses/',include('courses.urls'),name='courses'),
     path('enrollment/',include('enrollments.urls'),name='enrollment'),
-    path('accounts/',include('accounts.urls'),name='accounts')
+    path('accounts/',include('accounts.urls'),name='accounts'),
+    path('social-auth/',include('social_django.urls',namespace='social'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
