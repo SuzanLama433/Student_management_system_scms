@@ -104,6 +104,11 @@
 
                             {% if request.user.is_authenticated %}
                             <li>
+                                <a class="dropdown-item text-danger" href="{% url 'password_change' %}">
+                                    password Change
+                                </a>
+                            </li>
+                            <li>
                                 <a class="dropdown-item text-danger" href="{% url 'log_out' %}">
                                     Logout
                                 </a>
